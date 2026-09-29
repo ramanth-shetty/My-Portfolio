@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Ramanth Shetty | Full Stack Developer &amp; CSE Student</title>
+    <meta name="description" content="Personal portfolio of Ramanth Shetty. Computer Science Engineering student and Full Stack Developer specializing in Java, Spring Boot, and React." />
+    <meta property="og:title" content="Ramanth Shetty | Full Stack Developer &amp; CSE Student" />
+    <meta property="og:description" content="Personal portfolio of Ramanth Shetty. Computer Science Engineering student and Full Stack Developer specializing in Java, Spring Boot, and React." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'earth-bg': '#f5f2eb',
+              'earth-sidebar': '#ebe4d8',
+              'earth-card': '#fdfcf9',
+              'earth-ink': '#23201c',
+              'earth-body': '#665f54',
+              'earth-muted': '#948b7d',
+              'earth-border': '#dad2c3',
+              'earth-border-card': '#cdc3b1',
+              'earth-terracotta': '#b85d36',
+              'earth-terracotta-dark': '#9c4c2a',
+              'earth-olive': '#3f664b',
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+              mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      :root {
+        --color-bg-primary: #f5f2eb;
+        --color-bg-secondary: #ebe4d8;
+        --color-bg-card: #fdfcf9;
+        --color-text-primary: #23201c;
+        --color-text-secondary: #665f54;
+        --color-text-muted: #948b7d;
+        --color-border-subtle: #dad2c3;
+        --color-border-card: #cdc3b1;
+        --color-accent-primary: #b85d36;
+        --color-accent-hover-bg: #b85d36;
+        --color-accent-hover-text: #ffffff;
+        --color-accent-secondary: #3f664b;
+        --color-glow: rgba(184, 93, 54, 0.25);
+        --color-spotlight: rgba(184, 93, 54, 0.07);
+      }
+
+      body {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background-color: #b85d36;
+        color: #ffffff;
+      }
+
+      /* Custom Warm Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f5f2eb;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cdc3b1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #b85d36;
+      }
+
+      /* Focus states for keyboard accessibility */
+      a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+        outline: 2px solid #b85d36;
+        outline-offset: 4px;
+      }
+
+      /* Hero load animations */
+      .hero-anim {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .hero-anim-down {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .page-loaded .hero-anim,
+      .page-loaded .hero-anim-down {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Nav Link Underline slide effect */
+      .nav-link {
+        position: relative;
+        display: inline-block;
+        transition: color 0.2s ease-out;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: #b85d36;
+        transform-origin: bottom right;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      .nav-link.active {
+        color: #b85d36 !important;
+        font-weight: 600;
+      }
+
+      /* Skill Pill Styling */
+      .skill-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 14px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        border: 1px solid #b85d36;
+        border-radius: 9999px;
+        color: #b85d36;
+        background: transparent;
+        cursor: default;
+        transition: transform 0.2s ease-out, background-color 0.2s ease-out, color 0.2s ease-out, box-shadow 0.2s ease-out;
+        user-select: none;
+      }
+      .skill-pill:hover {
+        background-color: #b85d36;
+        color: #ffffff;
+        transform: scale(1.08);
+        box-shadow: 0 4px 15px rgba(184, 93, 54, 0.35);
+      }
+
+      /* Project Card Styling */
+      .project-card {
+        background: #fdfcf9;
+        border: 1px solid #cdc3b1;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 2px 6px rgba(35, 32, 28, 0.04);
+        transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+      }
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 30px -8px rgba(184, 93, 54, 0.22);
+        border-color: #b85d36;
+      }
+
+      /* Cert item hover */
+      .cert-item {
+        transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+      }
+      .cert-item:hover {
+        transform: translateX(8px);
+        background-color: rgba(235, 228, 216, 0.45);
+      }
+
+      /* Scroll reveal base classes */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+      .reveal-from-left {
+        opacity: 0;
+        transform: translateX(-24px);
+        transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+      }
+      .is-revealed {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+      }
+
+      /* Staggered wave effect for skill pills */
+      .skill-pill-anim {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+      .skill-pill-anim.is-revealed {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Interactive links glow */
+      .interactive-glow {
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out;
+      }
+      .interactive-glow:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(184, 93, 54, 0.3);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, ::after, ::before {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="relative min-h-screen bg-[#f5f2eb] text-[#23201c]">
+    
+    <!-- Cursor Interactive Radial Spotlight (Warm Terracotta Tone) -->
+    <div
+      id="cursor-spotlight"
+      class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 hidden lg:block"
+      style="background: radial-gradient(650px at -1000px -1000px, rgba(184, 93, 54, 0.08), transparent 80%);"
+    ></div>
+
+    <!-- MOBILE & TABLET STICKY TOP NAVIGATION BAR (< 1024px) -->
+    <header class="lg:hidden sticky top-0 z-40 flex items-center justify-between px-5 py-4 bg-[#f5f2eb]/95 backdrop-blur-md border-b border-[#dad2c3]">
+      <a href="#hero" class="text-lg font-bold font-mono tracking-wider text-[#b85d36]" aria-label="Ramanth Shetty Home">
+        RS
+      </a>
+      <button
+        id="mobile-menu-btn"
+        class="text-2xl p-2 text-[#23201c] hover:text-[#b85d36] focus:outline-none cursor-pointer transition-colors"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <span id="hamburger-icon">☰</span>
+      </button>
+    </header>
+
+    <!-- MOBILE OVERLAY MENU (Slide Down) -->
+    <div
+      id="mobile-menu-overlay"
+      class="lg:hidden fixed inset-x-0 top-[65px] bottom-0 z-40 bg-[#ebe4d8]/98 backdrop-blur-lg px-6 py-8 flex flex-col justify-between hidden transition-all duration-200"
+    >
+      <nav class="flex flex-col gap-4 text-base font-sans" aria-label="Mobile Navigation">
+        <a href="#about" class="mobile-nav-link py-3 border-b border-[#dad2c3] text-[#23201c] hover:text-[#b85d36] transition-colors">
+          About
+        </a>
+        <a href="#skills" class="mobile-nav-link py-3 border-b border-[#dad2c3] text-[#23201c] hover:text-[#b85d36] transition-colors">
+          Skills
+        </a>
+        <a href="#projects" class="mobile-nav-link py-3 border-b border-[#dad2c3] text-[#23201c] hover:text-[#b85d36] transition-colors">
+          Projects
+        </a>
+        <a href="#certifications" class="mobile-nav-link py-3 border-b border-[#dad2c3] text-[#23201c] hover:text-[#b85d36] transition-colors">
+          Certifications
+        </a>
+        <a href="#education" class="mobile-nav-link py-3 border-b border-[#dad2c3] text-[#23201c] hover:text-[#b85d36] transition-colors">
+          Education
+        </a>
+        <a href="#contact" class="mobile-nav-link font-medium py-3 border-b border-[#dad2c3] text-[#b85d36] transition-colors">
+          Contact
+        </a>
+      </nav>
+
+      <div class="space-y-2 pt-6 text-xs font-mono text-[#665f54]">
+        <div>Email: <a href="mailto:ramanthshetty022@gmail.com" class="text-[#b85d36] hover:underline">ramanthshetty022@gmail.com</a></div>
+        <div>Phone: <a href="tel:+917411928266" class="text-[#b85d36] hover:underline">+91 74119 28266</a></div>
+        <div class="pt-2 flex gap-4">
+          <a href="https://github.com/ramanth-shetty" target="_blank" rel="noopener noreferrer" class="text-[#3f664b] hover:text-[#b85d36]">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/ramanth-shetty" target="_blank" rel="noopener noreferrer" class="text-[#3f664b] hover:text-[#b85d36]">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN TWO-COLUMN CONTAINER (Desktop & Tablet) -->
+    <div class="max-w-[1340px] mx-auto lg:flex lg:justify-between">
+
+      <!-- DESKTOP FIXED/STICKY SIDEBAR (Width: 300px, Height: 100vh) -->
+      <aside class="hidden lg:flex fixed top-0 left-auto w-[300px] h-screen bg-[#ebe4d8] border-r border-[#dad2c3] px-6 py-12 flex-col justify-between z-30 overflow-y-auto">
+        
+        <!-- SECTION 1: TOP (Name, Tagline, Navigation) -->
+        <div>
+          <!-- 1.1 Name -->
+          <h1 class="text-[28px] font-bold tracking-tight text-[#23201c] mb-2 leading-tight">
+            <a href="#hero" class="hover:text-[#b85d36] transition-colors">
+              Ramanth Shetty
+            </a>
+          </h1>
+
+          <!-- 1.2 Tagline / Role -->
+          <p class="text-[14px] text-[#665f54] leading-normal mb-8">
+            Computer Science Engineering Student | Full Stack Developer
+          </p>
+
+          <!-- 1.3 Navigation Links -->
+          <nav class="flex flex-col space-y-4" aria-label="Desktop Navigation">
+            <a href="#about" class="nav-link text-[14px] font-mono text-[#665f54] hover:text-[#b85d36] py-1 w-max">
+              // About
+            </a>
+            <a href="#skills" class="nav-link text-[14px] font-mono text-[#665f54] hover:text-[#b85d36] py-1 w-max">
+              // Skills
+            </a>
+            <a href="#projects" class="nav-link text-[14px] font-mono text-[#665f54] hover:text-[#b85d36] py-1 w-max">
+              // Projects
+            </a>
+            <a href="#certifications" class="nav-link text-[14px] font-mono text-[#665f54] hover:text-[#b85d36] py-1 w-max">
+              // Certifications
+            </a>
+            <a href="#education" class="nav-link text-[14px] font-mono text-[#665f54] hover:text-[#b85d36] py-1 w-max">
+              // Education
+            </a>
+            <a href="#contact" class="nav-link text-[14px] font-mono text-[#665f54] hover:text-[#b85d36] py-1 w-max">
+              // Contact
+            </a>
+          </nav>
+        </div>
+
+        <!-- SECTION 2: BOTTOM (Contact Info & Social Icons) -->
+        <div class="pt-8 border-t border-[#dad2c3] space-y-3 font-mono text-[12px]">
+          <!-- 2.1 Email -->
+          <div>
+            <span class="block text-[10px] uppercase tracking-wider text-[#948b7d]">Email</span>
+            <a href="mailto:ramanthshetty022@gmail.com" class="text-[#665f54] hover:text-[#b85d36] transition-colors break-all">
+              ramanthshetty022@gmail.com
+            </a>
+          </div>
+
+          <!-- 2.2 Phone -->
+          <div>
+            <span class="block text-[10px] uppercase tracking-wider text-[#948b7d]">Phone</span>
+            <a href="tel:+917411928266" class="text-[#665f54] hover:text-[#b85d36] transition-colors">
+              +91 74119 28266
+            </a>
+          </div>
+
+          <!-- 2.3 Social Icons / Links -->
+          <div class="pt-2 flex items-center gap-4 text-[12px]">
+            <a
+              href="https://github.com/ramanth-shetty"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#3f664b] hover:text-[#b85d36] transition-colors flex items-center gap-1 font-medium"
+            >
+              <span>GitHub</span>
+              <span>↗</span>
+            </a>
+            <span class="text-[#dad2c3]">·</span>
+            <a
+              href="https://www.linkedin.com/in/ramanth-shetty"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#3f664b] hover:text-[#b85d36] transition-colors flex items-center gap-1 font-medium"
+            >
+              <span>LinkedIn</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- CONTENT AREA: Scrollable, offset by 300px on desktop -->
+      <main class="w-full lg:ml-[300px] lg:max-w-[calc(100%-300px)]">
+
+        <!-- 01 / HERO / INTRO SECTION -->
+        <section
+          id="hero"
+          class="min-h-screen flex flex-col justify-center px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 border-b border-[#dad2c3]"
+        >
+          <!-- Eyebrow -->
+          <div class="hero-anim-down text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-6 font-semibold">
+            01 / Hello, World
+          </div>
+
+          <!-- Main Headline -->
+          <h2 class="hero-anim text-[36px] sm:text-[48px] font-bold text-[#23201c] leading-[1.2] max-w-[650px] mb-6" style="transition-delay: 200ms;">
+            I turn complex problems into clear, useful software.
+          </h2>
+
+          <!-- Subheading / Lede -->
+          <p class="hero-anim text-[18px] text-[#665f54] leading-[1.6] max-w-[540px] mb-10" style="transition-delay: 300ms;">
+            I'm a CSE student and full-stack developer focused on building reliable web applications with Java, Spring Boot, and React—from database design to the interface you touch.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="hero-anim flex flex-wrap items-center gap-6" style="transition-delay: 400ms;">
+            <!-- Button 1: "View My Work" -->
+            <a
+              href="#projects"
+              class="inline-block px-8 py-3 font-mono text-[14px] text-[#b85d36] border-2 border-[#b85d36] rounded-[4px] hover:bg-[#b85d36] hover:text-[#ffffff] transition-all duration-200 font-semibold shadow-sm"
+            >
+              View My Work
+            </a>
+
+            <!-- Button 2: "Get In Touch" -->
+            <a
+              href="#contact"
+              class="font-mono text-[14px] text-[#b85d36] hover:text-[#9c4c2a] hover:underline transition-all font-semibold"
+            >
+              Get In Touch →
+            </a>
+          </div>
+        </section>
+
+        <!-- 02 / ABOUT SECTION -->
+        <section
+          id="about"
+          class="px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 max-w-[850px] border-b border-[#dad2c3]"
+        >
+          <div class="reveal-on-scroll text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-4 font-semibold">
+            02 / About
+          </div>
+
+          <h2 class="reveal-on-scroll text-[28px] font-bold text-[#23201c] mb-8">
+            About Me
+          </h2>
+
+          <div class="reveal-on-scroll space-y-4 text-[16px] text-[#665f54] leading-[1.8]">
+            <p>
+              I'm a third-year Computer Science Engineering student at Alva's Institute of Engineering and Technology with a strong foundation in full-stack web development. My hands-on experience spans Java, Spring Boot, Python, Flask, React, and modern web technologies.
+            </p>
+            <p>
+              I'm passionate about building scalable, user-focused applications that solve real-world problems. Whether designing RESTful APIs, crafting responsive UIs, or architecting database schemas, I approach every project with precision and creativity.
+            </p>
+            <p>
+              I'm actively seeking an internship or entry-level Full Stack Developer role where I can apply my skills, learn from industry experts, and contribute meaningfully to a growing team.
+            </p>
+          </div>
+
+          <div class="reveal-on-scroll mt-8 pt-6 border-t border-[#dad2c3] grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-mono">
+            <div>
+              <span class="text-[#948b7d] block mb-1">Academic Merit</span>
+              <span class="text-[#23201c] font-semibold">AIET · CGPA 9.2</span>
+            </div>
+            <div>
+              <span class="text-[#948b7d] block mb-1">Primary Core</span>
+              <span class="text-[#b85d36] font-semibold">Java &amp; Spring Boot</span>
+            </div>
+            <div>
+              <span class="text-[#948b7d] block mb-1">Frontend Core</span>
+              <span class="text-[#3f664b] font-semibold">React &amp; Tailwind</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03 / SKILLS SECTION -->
+        <section
+          id="skills"
+          class="px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 max-w-[1000px] border-b border-[#dad2c3]"
+        >
+          <div class="reveal-on-scroll text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-4 font-semibold">
+            03 / Skills
+          </div>
+
+          <h2 class="reveal-on-scroll text-[28px] font-bold text-[#23201c] mb-8">
+            Skills
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            <!-- Skill Group 1: Technical -->
+            <div class="reveal-on-scroll">
+              <h3 class="text-[14px] font-bold font-mono text-[#b85d36] uppercase tracking-wider mb-4 flex items-center gap-2">
+                <span>Technical</span>
+                <span class="text-xs text-[#948b7d] font-normal">(13 Technologies)</span>
+              </h3>
+              
+              <div class="flex flex-wrap gap-2" id="tech-skills-container">
+                <span class="skill-pill skill-pill-anim">Java</span>
+                <span class="skill-pill skill-pill-anim">JavaScript (ES6)</span>
+                <span class="skill-pill skill-pill-anim">HTML5</span>
+                <span class="skill-pill skill-pill-anim">CSS3</span>
+                <span class="skill-pill skill-pill-anim">Tailwind CSS</span>
+                <span class="skill-pill skill-pill-anim">React</span>
+                <span class="skill-pill skill-pill-anim">Spring Boot</span>
+                <span class="skill-pill skill-pill-anim">RESTful APIs</span>
+                <span class="skill-pill skill-pill-anim">MySQL</span>
+                <span class="skill-pill skill-pill-anim">Git</span>
+                <span class="skill-pill skill-pill-anim">GitHub</span>
+                <span class="skill-pill skill-pill-anim">IntelliJ IDEA</span>
+                <span class="skill-pill skill-pill-anim">Postman</span>
+              </div>
+            </div>
+
+            <!-- Skill Group 2: Personal -->
+            <div class="reveal-on-scroll">
+              <h3 class="text-[14px] font-bold font-mono text-[#b85d36] uppercase tracking-wider mb-4 flex items-center gap-2">
+                <span>Personal</span>
+                <span class="text-xs text-[#948b7d] font-normal">(Core Attributes)</span>
+              </h3>
+              
+              <div class="flex flex-wrap gap-2" id="personal-skills-container">
+                <span class="skill-pill skill-pill-anim">Hardworking</span>
+                <span class="skill-pill skill-pill-anim">Patience</span>
+                <span class="skill-pill skill-pill-anim">Problem-Solving</span>
+                <span class="skill-pill skill-pill-anim">Team Player</span>
+              </div>
+
+              <div class="mt-8 p-4 rounded-lg bg-[#fdfcf9] border border-[#cdc3b1] text-xs font-mono text-[#665f54] space-y-2 shadow-sm">
+                <div class="flex items-center gap-2 text-[#b85d36] font-semibold uppercase tracking-wider">
+                  <span>💡</span>
+                  <span>Engineering Mindset</span>
+                </div>
+                <p>
+                  High endurance when debugging distributed application state, writing normalized SQL transactions, and refining interactive components for production readiness.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 / PROJECTS SECTION -->
+        <section
+          id="projects"
+          class="px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 max-w-[1000px] border-b border-[#dad2c3]"
+        >
+          <div class="reveal-on-scroll text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-4 font-semibold">
+            04 / Projects
+          </div>
+
+          <h2 class="reveal-on-scroll text-[28px] font-bold text-[#23201c] mb-8">
+            Projects
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Project Card 1: Hostel Management System -->
+            <article class="project-card reveal-on-scroll flex flex-col justify-between">
+              <div>
+                <h3 class="text-[20px] font-bold text-[#23201c] mb-2">
+                  Hostel Management System
+                </h3>
+
+                <p class="text-[15px] text-[#665f54] leading-[1.6] mb-4">
+                  Full-stack application for managing hostel operations. Features student registration, room allocation, fee tracking, and administrative dashboards with real-time updates and RESTful APIs.
+                </p>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-6" aria-label="Technologies used">
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">Java</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">Spring Boot</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">HTML5</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">CSS3</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">Tailwind CSS</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">JavaScript</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">MySQL</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">REST APIs</span>
+                </div>
+              </div>
+
+              <!-- Links -->
+              <div class="flex items-center gap-4 text-[12px] font-mono pt-4 border-t border-[#dad2c3]">
+                <a
+                  href="https://github.com/ramanth-shetty/hostel-management-system"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[#3f664b] hover:text-[#b85d36] hover:underline flex items-center gap-1 transition-colors font-medium"
+                >
+                  <span>[GitHub]</span>
+                  <span>↗</span>
+                </a>
+                <a
+                  href="https://github.com/ramanth-shetty/hostel-management-system#readme"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[#3f664b] hover:text-[#b85d36] hover:underline flex items-center gap-1 transition-colors font-medium"
+                >
+                  <span>[Live Demo]</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- Project Card 2: CodeVault - LeetCode Tracker -->
+            <article class="project-card reveal-on-scroll flex flex-col justify-between" style="transition-delay: 100ms;">
+              <div>
+                <h3 class="text-[20px] font-bold text-[#23201c] mb-2">
+                  CodeVault - LeetCode Tracker
+                </h3>
+
+                <p class="text-[15px] text-[#665f54] leading-[1.6] mb-4">
+                  Progressive Web App (PWA) to track LeetCode problem-solving progress. Offline-first architecture with local storage, responsive design, and intuitive UI for organizing coding challenges by difficulty and topic.
+                </p>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-6" aria-label="Technologies used">
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">React</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">Tailwind CSS</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">JavaScript</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">PWA</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">LocalStorage</span>
+                  <span class="font-mono text-[12px] text-[#b85d36] bg-[#f5f2eb] px-2 py-1 rounded border border-[#cdc3b1]">Mobile-First</span>
+                </div>
+              </div>
+
+              <!-- Links -->
+              <div class="flex items-center gap-4 text-[12px] font-mono pt-4 border-t border-[#dad2c3]">
+                <a
+                  href="https://github.com/ramanth-shetty/codevault-leetcode-tracker"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[#3f664b] hover:text-[#b85d36] hover:underline flex items-center gap-1 transition-colors font-medium"
+                >
+                  <span>[GitHub]</span>
+                  <span>↗</span>
+                </a>
+                <a
+                  href="https://github.com/ramanth-shetty/codevault-leetcode-tracker#readme"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[#3f664b] hover:text-[#b85d36] hover:underline flex items-center gap-1 transition-colors font-medium"
+                >
+                  <span>[Live Demo]</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- 05 / CERTIFICATIONS SECTION -->
+        <section
+          id="certifications"
+          class="px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 max-w-[850px] border-b border-[#dad2c3]"
+        >
+          <div class="reveal-on-scroll text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-4 font-semibold">
+            05 / Certifications
+          </div>
+
+          <h2 class="reveal-on-scroll text-[28px] font-bold text-[#23201c] mb-8">
+            Certifications
+          </h2>
+
+          <div class="divide-y divide-[#dad2c3] border-t border-b border-[#dad2c3]">
+
+            <!-- Cert 1 -->
+            <div class="cert-item reveal-from-left py-4 flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-[16px] font-bold text-[#23201c] mb-1 border-l-4 border-[#b85d36] pl-3">
+                  Full-Stack Java Developer with Spring &amp; Spring Boot Specialization
+                </h3>
+                <div class="text-[13px] text-[#665f54] pl-3 mb-1">
+                  Board Infinity
+                </div>
+                <div class="text-[12px] font-mono text-[#948b7d] pl-3">
+                  Aug 2026
+                </div>
+              </div>
+              <div class="text-[18px] text-[#3f664b] shrink-0 font-bold pr-2" title="Verified Certification">
+                ✓
+              </div>
+            </div>
+
+            <!-- Cert 2 -->
+            <div class="cert-item reveal-from-left py-4 flex items-start justify-between gap-4" style="transition-delay: 100ms;">
+              <div>
+                <h3 class="text-[16px] font-bold text-[#23201c] mb-1 border-l-4 border-[#b85d36] pl-3">
+                  The Bits and Bytes of Computer Networking
+                </h3>
+                <div class="text-[13px] text-[#665f54] pl-3 mb-1">
+                  Google
+                </div>
+                <div class="text-[12px] font-mono text-[#948b7d] pl-3">
+                  Aug 2026
+                </div>
+              </div>
+              <div class="text-[18px] text-[#3f664b] shrink-0 font-bold pr-2" title="Verified Certification">
+                ✓
+              </div>
+            </div>
+
+            <!-- Cert 3 -->
+            <div class="cert-item reveal-from-left py-4 flex items-start justify-between gap-4" style="transition-delay: 200ms;">
+              <div>
+                <h3 class="text-[16px] font-bold text-[#23201c] mb-1 border-l-4 border-[#b85d36] pl-3">
+                  Computer Networks and Network Security
+                </h3>
+                <div class="text-[13px] text-[#665f54] pl-3 mb-1">
+                  IBM
+                </div>
+                <div class="text-[12px] font-mono text-[#948b7d] pl-3">
+                  Jul 2026
+                </div>
+              </div>
+              <div class="text-[18px] text-[#3f664b] shrink-0 font-bold pr-2" title="Verified Certification">
+                ✓
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 06 / EDUCATION SECTION -->
+        <section
+          id="education"
+          class="px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 max-w-[850px] border-b border-[#dad2c3]"
+        >
+          <div class="reveal-on-scroll text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-4 font-semibold">
+            06 / Education
+          </div>
+
+          <h2 class="reveal-on-scroll text-[28px] font-bold text-[#23201c] mb-8">
+            Education
+          </h2>
+
+          <div class="space-y-8">
+
+            <!-- Edu Item 1 -->
+            <div class="reveal-on-scroll border-l-2 border-[#cdc3b1] pl-5 hover:border-[#b85d36] transition-colors">
+              <h3 class="text-[18px] font-bold text-[#23201c] mb-1">
+                Bachelor of Computer Science and Engineering
+              </h3>
+              <div class="text-[15px] text-[#665f54] mb-1">
+                Alva's Institute of Engineering and Technology
+              </div>
+              <div class="text-[13px] font-mono font-semibold text-[#b85d36]">
+                CGPA: 9.2 | Aug 2024 – Present
+              </div>
+            </div>
+
+            <!-- Edu Item 2 -->
+            <div class="reveal-on-scroll border-l-2 border-[#cdc3b1] pl-5 hover:border-[#b85d36] transition-colors" style="transition-delay: 100ms;">
+              <h3 class="text-[18px] font-bold text-[#23201c] mb-1">
+                PUC, Class XII
+              </h3>
+              <div class="text-[15px] text-[#665f54] mb-1">
+                Bunts' Sangha R.N.S. Vidyaniketan and Composite College
+              </div>
+              <div class="text-[13px] font-mono text-[#948b7d]">
+                Percentage: 94.60% | March 2024
+              </div>
+            </div>
+
+            <!-- Edu Item 3 -->
+            <div class="reveal-on-scroll border-l-2 border-[#cdc3b1] pl-5 hover:border-[#b85d36] transition-colors" style="transition-delay: 200ms;">
+              <h3 class="text-[18px] font-bold text-[#23201c] mb-1">
+                SSLC, Class X
+              </h3>
+              <div class="text-[15px] text-[#665f54] mb-1">
+                Carmel Public School
+              </div>
+              <div class="text-[13px] font-mono text-[#948b7d]">
+                Percentage: 98.88% | March 2022
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 07 / CONTACT SECTION -->
+        <section
+          id="contact"
+          class="min-h-[60vh] flex flex-col justify-center px-6 py-16 sm:px-12 sm:py-24 lg:px-16 lg:py-24 max-w-[850px]"
+        >
+          <div class="reveal-on-scroll text-[12px] font-mono text-[#b85d36] uppercase tracking-[2px] mb-4 font-semibold">
+            07 / Contact
+          </div>
+
+          <h2 class="reveal-on-scroll text-[28px] font-bold text-[#23201c] mb-6">
+            Get In Touch
+          </h2>
+
+          <p class="reveal-on-scroll text-[16px] text-[#665f54] leading-[1.8] max-w-[550px] mb-8">
+            I'm actively looking for opportunities to learn, contribute, and grow. Feel free to reach out via email, call, or connect on social media. I'd love to chat about full-stack development, internships, or any exciting projects you're working on!
+          </p>
+
+          <!-- Contact Links Row -->
+          <div class="reveal-on-scroll flex flex-wrap gap-4 sm:gap-6 items-center pt-2">
+            <!-- Link 1 - Email -->
+            <a
+              href="mailto:ramanthshetty022@gmail.com"
+              class="interactive-glow text-[13px] sm:text-[14px] font-mono text-[#b85d36] bg-[#fdfcf9] border border-[#b85d36] px-4 py-2.5 rounded font-semibold break-all shadow-sm"
+            >
+              ramanthshetty022@gmail.com
+            </a>
+
+            <!-- Link 2 - Phone -->
+            <a
+              href="tel:+917411928266"
+              class="interactive-glow text-[13px] sm:text-[14px] font-mono text-[#b85d36] bg-[#fdfcf9] border border-[#b85d36] px-4 py-2.5 rounded font-semibold shadow-sm"
+            >
+              +91 74119 28266
+            </a>
+
+            <!-- Link 3 - GitHub -->
+            <a
+              href="https://github.com/ramanth-shetty"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="interactive-glow text-[13px] sm:text-[14px] font-mono text-[#3f664b] bg-[#fdfcf9] border border-[#3f664b] px-4 py-2.5 rounded flex items-center gap-1.5 font-semibold shadow-sm"
+            >
+              <span>GitHub</span>
+              <span>↗</span>
+            </a>
+
+            <!-- Link 4 - LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/ramanth-shetty"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="interactive-glow text-[13px] sm:text-[14px] font-mono text-[#3f664b] bg-[#fdfcf9] border border-[#3f664b] px-4 py-2.5 rounded flex items-center gap-1.5 font-semibold shadow-sm"
+            >
+              <span>LinkedIn</span>
+              <span>↗</span>
+            </a>
+          </div>
+
+          <!-- Quick Copy Feedback -->
+          <div class="mt-8 flex items-center gap-3">
+            <button
+              id="copy-email-btn"
+              class="text-xs font-mono text-[#665f54] hover:text-[#b85d36] underline underline-offset-4 cursor-pointer transition-colors"
+            >
+              Click to copy email address
+            </button>
+            <span id="copy-feedback" class="text-xs font-mono font-semibold text-[#3f664b] hidden">
+              ✓ Copied to clipboard!
+            </span>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="px-6 py-8 sm:px-12 lg:px-16 border-t border-[#dad2c3] bg-[#ebe4d8] text-center text-[12px] font-mono text-[#665f54]">
+          <p>© 2026 Ramanth Shetty. Built with HTML, CSS &amp; JavaScript.</p>
+        </footer>
+
+      </main>
+    </div>
+
+    <!-- VANILLA JAVASCRIPT: Scroll Animations, Active Nav Highlighting & Interactivity -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. Page Load Animation Trigger
+        requestAnimationFrame(() => {
+          document.body.classList.add('page-loaded');
+        });
+
+        // 2. Cursor Radial Spotlight (Terracotta warmth)
+        const spotlight = document.getElementById('cursor-spotlight');
+        if (spotlight) {
+          window.addEventListener('mousemove', (e) => {
+            spotlight.style.background = `radial-gradient(650px at ${e.clientX}px ${e.clientY}px, rgba(184, 93, 54, 0.08), transparent 80%)`;
+          });
+        }
+
+        // 3. Mobile Hamburger Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMenu() {
+          const isOpen = !menuOverlay.classList.contains('hidden');
+          if (isOpen) {
+            menuOverlay.classList.add('hidden');
+            hamburgerIcon.textContent = '☰';
+            menuBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          } else {
+            menuOverlay.classList.remove('hidden');
+            hamburgerIcon.textContent = '✕';
+            menuBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+
+        if (menuBtn && menuOverlay) {
+          menuBtn.addEventListener('click', toggleMenu);
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              menuOverlay.classList.add('hidden');
+              hamburgerIcon.textContent = '☰';
+              menuBtn.setAttribute('aria-expanded', 'false');
+              document.body.style.overflow = '';
+            });
+          });
+        }
+
+        // 4. Intersection Observer for Scroll-Triggered Animations
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -10% 0px',
+          threshold: 0.15,
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              
+              if (entry.target.id === 'tech-skills-container' || entry.target.id === 'personal-skills-container') {
+                const pills = entry.target.querySelectorAll('.skill-pill-anim');
+                pills.forEach((pill, idx) => {
+                  setTimeout(() => {
+                    pill.classList.add('is-revealed');
+                  }, idx * 60);
+                });
+              }
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll, .reveal-from-left, #tech-skills-container, #personal-skills-container').forEach((el) => {
+          revealObserver.observe(el);
+        });
+
+        // 5. Active Link Highlighting in Desktop Sidebar based on Scroll Position
+        const sections = document.querySelectorAll('section[id]');
+        const desktopNavLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+          const scrollY = window.pageYOffset + 140;
+          sections.forEach((current) => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop;
+            const sectionId = current.getAttribute('id');
+
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+              desktopNavLinks.forEach((link) => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                  link.classList.add('active');
+                }
+              });
+            }
+          });
+        }
+
+        window.addEventListener('scroll', updateActiveNav, { passive: true });
+        updateActiveNav();
+
+        // 6. Copy to Clipboard for Email
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        const copyFeedback = document.getElementById('copy-feedback');
+        if (copyEmailBtn && copyFeedback) {
+          copyEmailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('ramanthshetty022@gmail.com').then(() => {
+              copyFeedback.classList.remove('hidden');
+              setTimeout(() => {
+                copyFeedback.classList.add('hidden');
+              }, 3000);
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
